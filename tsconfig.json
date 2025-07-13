@@ -19,9 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./*"] // <--- CHANGED THIS LINE
     },
-    "baseUrl": "."
+    "baseUrl": "./src" // <--- CHANGED THIS LINE
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
