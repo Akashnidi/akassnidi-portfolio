@@ -19,10 +19,17 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"] // <--- CHANGED THIS LINE
+      "@/*": ["./src/*"] // Reverted to point to src directory explicitly
     },
-    "baseUrl": "./src" // <--- CHANGED THIS LINE
+    "baseUrl": "." // Reverted to project root as base URL
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/**/*.ts", // Explicitly include src directory
+    "src/**/*.tsx" // Explicitly include src directory
+  ],
   "exclude": ["node_modules"]
 }
