@@ -19,19 +19,15 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./*"] // Changed: Now maps directly from baseUrl
     },
-    "baseUrl": "."
+    "baseUrl": "./src" // Changed: Base URL is now the src directory
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/app/**/*.ts",   // Explicitly include app directory TypeScript files
-    "src/app/**/*.tsx"   // Explicitly include app directory TSX files
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
