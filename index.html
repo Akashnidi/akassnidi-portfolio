@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akassnidi Karunanithi - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled .logo {
+            color: #333;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav.scrolled .nav-links li a {
+            color: #333;
+        }
+
+        .nav-links li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-links li a.active {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Page Content */
+        .page {
+            display: none;
+            padding-top: 100px;
+            min-height: 100vh;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Home Page */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 0;
+            gap: 4rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            color: #fff;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInLeft 1s ease-out 0.2s both;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            animation: slideInLeft 1s ease-out 0.4s both;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            animation: slideInRight 1s ease-out;
+        }
+
+        .profile-pic {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            color: #fff;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .card p {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .skill-item h4 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-item p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        /* Availability Table */
+        .availability-table {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .availability-table table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #fff;
+        }
+
+        .availability-table th,
+        .availability-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .availability-table th {
+            background: rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+        }
+
+        .status-available {
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        .status-busy {
+            color: #f87171;
+            font-weight: 600;
+        }
+
+        .status-partial {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .contact-links a {
+            padding: 0.6rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #fff;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links li a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .profile-pic {
+                width: 250px;
+                height: 250px;
+                font-size: 3rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* Achievement badges */
+        .achievement-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #333;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0.2rem;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo">AK</a>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#career" class="nav-link">Career</a></li>
+                    <li><a href="#passions" class="nav-link">Passions</a></li>
+                    <li><a href="#availability" class="nav-link">Availability</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Akassnidi Karunanithi</h1>
+                    <p class="subtitle">Senior System Engineer & Cloud Enthusiast</p>
+                    <p class="description">
+                        With 2.11 years of experience in Infosys Equinox, I specialize in SRE, Incident management, 
+                        release management, and cloud technologies. Currently advancing my expertise through 
+                        cloud architect certification while delivering excellence in production environments.
+                    </p>
+                    <div class="contact-links">
+                        <a href="tel:6381712480">📞 Call</a>
+                        <a href="mailto:akashnidiofficial@gmail.com">✉️ Email</a>
+                        <a href="https://linkedin.com/in/akassnidi-karunanithi-123617202/" target="_blank">💼 LinkedIn</a>
+                        <a href="https://credly.com/user/akassnidi-karunanithi" target="_blank">🏆 Credly</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-pic">AK</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🎯 About Me</h3>
+                <p>
+                    I'm a passionate Senior System Engineer based in Coimbatore, Tamil Nadu, with expertise in 
+                    managing complex eCommerce applications in AWS environments. My journey in technology spans 
+                    from electrical engineering to cloud architecture, driven by curiosity and continuous learning.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🚀 What I Do</h3>
+                <p>
+                    I ensure seamless application performance through proactive monitoring, incident resolution, 
+                    and deployment management. My work involves supporting multi-regional clients, managing 200+ 
+                    deployments, and maintaining system stability across critical business operations.
+                </p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <h4>☁️ Cloud Platforms</h4>
+                    <p>AWS, GCP, Azure</p>
+                </div>
+                <div class="skill-item">
+                    <h4>🔧 DevOps Tools</h4>
+                    <p>Jenkins, GitHub, ServiceNow</p>
+                </div>
+                <div class="skill-item">
+                    <h4>📊 Monitoring</h4>
+                    <p>Instana, Splunk, Pingdom</p>
+                </div>
+                <div class="skill-item">
+                    <h4>💾 Databases</h4>
+                    <p>RDS, MongoDB, SQL</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Page -->
+        <section id="career" class="page">
+            <div class="section-header">
+                <h2>Professional Journey</h2>
+                <p>My career progression in system engineering and cloud technologies</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="card">
+                        <h3>Senior System Engineer (EQ Sr. Software Dev)</h3>
+                        <p><strong>Infosys Equinox</strong> | Dec 2024 – Present</p>
+                        <p>
+                            Leading application support for eCommerce web applications in AWS, working in rotational 
+                            shifts aligned with US business hours. Managing incident resolution, AWS monitoring, 
+                            and automated alert systems while ensuring SLA compliance.
+                        </p>
+                        <div class="achievement-badge">🏆 Spotlight Award 2025</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="card">
+                        <h3>System Engineer</h3>
+                        <p><strong>Infosys Equinox</strong> | Dec 2022 – Dec 2024</p>
+                        <p>
+                            Handled 200+ deployments for monolithic and microservice-based applications. 
+                            Managed end-to-end release processes and administered Application Manager 
+                            for performance monitoring across multiple clients.
+                        </p>
+                        <div class="achievement-badge">🏆 Spotlight Award 2024</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="card">
+                        <h3>System Engineer Trainee</h3>
+                        <p><strong>Infosys</strong> | June 2022 – Dec 2022</p>
+                        <p>
+                            Completed foundational training in Linux, SQL, MongoDB, and Python. 
+                            Earned Python certification during the training period.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="card">
+                        <h3>Graduate Engineer Trainee</h3>
+                        <p><strong>Voltech Engineers</strong> | Oct 2021 – May 2022</p>
+                        <p>
+                            Conducted testing and commissioning of numerical relays and control panels, 
+                            building foundation in electrical systems and technical problem-solving.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🎓 Education</h3>
+                <p><strong>B.E. Electrical & Electronics Engineering</strong><br>
+                Sri Krishna College of Technology, 2021 | CGPA: 7.6</p>
+            </div>
+
+            <div class="card">
+                <h3>🏅 Certifications</h3>
+                <p>
+                    <strong>AWS Cloud Practitioner</strong> (2024-2027)<br>
+                    <strong>GCP Associate</strong> (2024-2027)<br>
+                    <strong>Python Certification</strong> - Infosys
+                </p>
+            </div>
+        </section>
+
+        <!-- Passions Page -->
+        <section id="passions" class="page">
+            <div class="section-header">
+                <h2>Beyond Work</h2>
+                <p>My learning journey, events, and continuous growth</p>
+            </div>
+
+            <div class="card">
+                <h3>📚 Current Learning</h3>
+                <p>
+                    <strong>Cloud Architect Program</strong> - Intellipaat (Expected 2025)<br>
+                    Advancing my cloud architecture skills to design scalable, secure, and efficient cloud solutions.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🎪 Technical Events & Conferences</h3>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h4>AWS Summit Bangalore 2025</h4>
+                        <p>Innovators Edition - Explored latest AWS innovations</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>AWS Partner Equip</h4>
+                        <p>19 Hours Training Program - March 2025</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>AppViewX SaaS Security</h4>
+                        <p>Security Conference 2024</p>
+                    </div>
+                    <div class="skill-item">
+                        <h4>Infosys AI Summit</h4>
+                        <p>Responsible AI Summit 2025</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🔧 Technical Interests</h3>
+                <p>
+                    <strong>Research & Development:</strong> Passionate about exploring new technologies and 
+                    understanding complex technical challenges. I enjoy diving deep into cloud architectures, 
+                    automation, and emerging tools in the DevOps ecosystem.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>💪 Soft Skills & Approach</h3>
+                <p>
+                    <strong>Adaptability:</strong> Highly adaptive to new technical domains and challenges<br>
+                    <strong>Problem Solving:</strong> Strong analytical skills with a proactive mindset<br>
+                    <strong>Collaboration:</strong> Team player who can also work independently<br>
+                    <strong>Flexibility:</strong> Experienced in rotational shifts and diverse work environments
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🎯 Future Goals</h3>
+                <p>
+                    Working towards becoming a certified Cloud Architect and expanding expertise in 
+                    multi-cloud environments. Interested in exploring AI/ML integration with cloud 
+                    infrastructure and contributing to open-source projects.
+                </p>
+            </div>
+        </section>
+
+        <!-- Availability Page -->
+        <section id="availability" class="page">
+            <div class="section-header">
+                <h2>This Week's Availability</h2>
+                <p>My schedule for professional meetings and collaborations</p>
+            </div>
+
+            <div class="availability-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Day</th>
+                            <th>Status</th>
+                            <th>Available From</th>
+                            <th>Available To</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>13-07-25</td>
+                            <td>Sunday</td>
+                            <td><span class="status-available">Available</span></td>
+                            <td>5:30 PM</td>
+                            <td>6:30 PM</td>
+                            <td>Weekend availability</td>
+                        </tr>
+                        <tr>
+                            <td>14-07-25</td>
+                            <td>Monday</td>
+                            <td><span class="status-busy">Busy</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>Work shift</td>
+                        </tr>
+                        <tr>
+                            <td>15-07-25</td>
+                            <td>Tuesday</td>
+                            <td><span class="status-partial">Partial</span></td>
+                            <td>6:00 PM</td>
+                            <td>7:00 PM</td>
+                            <td>After work hours</td>
+                        </tr>
+                        <tr>
+                            <td>16-07-25</td>
+                            <td>Wednesday</td>
+                            <td><span class="status-partial">Partial</span></td>
+                            <td>6:00 PM</td>
+                            <td>7:00 PM</td>
+                            <td>After work hours</td>
+                        </tr>
+                        <tr>
+                            <td>17-07-25</td>
+                            <td>Thursday</td>
+                            <td><span class="status-busy">Busy</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>Work shift</td>
+                        </tr>
+                        <tr>
+                            <td>18-07-25</td>
+                            <td>Friday</td>
+                            <td><span class="status-partial">Partial</span></td>
+                            <td>6:30 PM</td>
+                            <td>7:30 PM</td>
+                            <td>End of work week</td>
+                        </tr>
+                        <tr>
+                            <td>19-07-25</td>
+                            <td>Saturday</td>
+                            <td><span class="status-available">Available</span></td>
+                            <td>10:00 AM</td>
+                            <td>12:00 PM</td>
+                            <td>Weekend availability</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>📅 Schedule Notes</h3>
+                <p>
+                    <strong>Work Hours:</strong> Currently working in rotational shifts aligned with US business hours<br>
+                    <strong>Flexibility:</strong> Available for urgent consultations outside listed hours<br>
+                    <strong>Time Zone:</strong> IST (Indian Standard Time)<br>
+                    <strong>Preferred Meeting Duration:</strong> 30-60 minutes
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🤝 How to Connect</h3>
+                <p>
+                    For scheduling meetings or collaborations, please reach out via email or LinkedIn. 
+                    I'm open to discussing cloud architecture, system engineering challenges, or 
+                    sharing experiences about career growth in tech.
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:akashnidiofficial@gmail.com">📧 Schedule Meeting</a>
+                    <a href="https://linkedin.com/in/akassnidi-karunanithi-123617202/" target="_blank">💼 LinkedIn</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+        const navbar = document.getElementById('navbar');
+
+        // Handle navigation
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                
+                // Remove active class from all links and pages
+                navLinks.forEach(l => l.classList.remove('active'));
+                pages.forEach(p => p.classList.remove('active'));
+                
+                // Add active class to clicked link and target page
+                link.classList.add('active');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // Handle navbar scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Add smooth animations on page load
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+
+        // Add some interactive elements
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(-5px) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
