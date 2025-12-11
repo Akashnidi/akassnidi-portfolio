@@ -436,9 +436,20 @@
             border: 3px solid #fff;
         }
     </style>
+
+    <script type="text/javascript">
+(function(w,d,s,r,k,h,m){
+	if(w.performance && w.performance.timing && w.performance.navigation) {
+		w[r] = w[r] || function(){(w[r].q = w[r].q || []).push(arguments)};
+		h=d.createElement('script');h.async=true;h.setAttribute('src',s+k);
+		d.getElementsByTagName('head')[0].appendChild(h);
+		(m = window.onerror),(window.onerror = function (b, c, d, f, g) {
+		m && m(b, c, d, f, g),g || (g = new Error(b)),(w[r].q = w[r].q || []).push(["captureException",g]);})
+	}
+})(window,document,'https://192.168.1.4:7443/RUMScript.js?appKey=','apmr','IHFTrfQgJCwITvGUAR8gHJEa4EHtKU2Q10000296');
+</script>
 </head>
 <body>
-    <!-- Navigation -->
     <nav id="navbar">
         <div class="container">
             <div class="nav-container">
@@ -454,7 +465,6 @@
     </nav>
 
     <div class="container">
-        <!-- Home Page -->
         <section id="home" class="page active">
             <div class="hero">
                 <div class="hero-content">
@@ -515,7 +525,6 @@
             </div>
         </section>
 
-        <!-- Career Page -->
         <section id="career" class="page">
             <div class="section-header">
                 <h2>Professional Journey</h2>
@@ -588,7 +597,6 @@
             </div>
         </section>
 
-        <!-- Passions Page -->
         <section id="passions" class="page">
             <div class="section-header">
                 <h2>Beyond Work</h2>
@@ -654,7 +662,6 @@
             </div>
         </section>
 
-        <!-- Availability Page -->
         <section id="availability" class="page">
             <div class="section-header">
                 <h2>This Week's Availability</h2>
@@ -678,25 +685,25 @@
                             <td>13-12-25</td>
                             <td>Saturday</td>
                             <td><span class="status-available">Available</span></td>
-                            <td>5:30 PM</td>
-                            <td>6:30 PM</td>
+                            <td>10:00 AM</td>
+                            <td>12:00 PM</td>
                             <td>Weekend availability</td>
                         </tr>
                         <tr>
                             <td>14-12-25</td>
                             <td>Sunday</td>
-                            <td><span class="status-busy">Busy</span></td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>Work shift</td>
+                            <td><span class="status-available">Available</span></td>
+                            <td>5:30 PM</td>
+                            <td>6:30 PM</td>
+                            <td>Weekend availability</td>
                         </tr>
                         <tr>
                             <td>15-12-25</td>
                             <td>Monday</td>
-                            <td><span class="status-partial">Partial</span></td>
-                            <td>6:00 PM</td>
-                            <td>7:00 PM</td>
-                            <td>After work hours</td>
+                            <td><span class="status-busy">Busy</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>Work shift</td>
                         </tr>
                         <tr>
                             <td>16-12-25</td>
@@ -710,25 +717,25 @@
                             <td>17-12-25</td>
                             <td>Wednesday</td>
                             <td><span class="status-partial">Partial</span></td>
-                            <td>7:30 PM</td>
-                            <td>9:30 PM</td>
+                            <td>6:00 PM</td>
+                            <td>7:00 PM</td>
                             <td>After work hours</td>
                         </tr>
                         <tr>
                             <td>18-12-25</td>
                             <td>Thursday</td>
                             <td><span class="status-partial">Partial</span></td>
-                            <td>6:30 PM</td>
                             <td>7:30 PM</td>
-                            <td>End of work week</td>
+                            <td>9:30 PM</td>
+                            <td>After work hours</td>
                         </tr>
                         <tr>
                             <td>19-12-25</td>
                             <td>Friday</td>
-                            <td><span class="status-available">Available</span></td>
-                            <td>10:00 AM</td>
-                            <td>12:00 PM</td>
-                            <td>Weekend availability</td>
+                            <td><span class="status-partial">Partial</span></td>
+                            <td>6:30 PM</td>
+                            <td>7:30 PM</td>
+                            <td>End of work week</td>
                         </tr>
                     </tbody>
                 </table>
